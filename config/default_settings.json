@@ -1,7 +1,6 @@
 {
   "check_interval": "30s",
   "timeout": "5s",
-  "mimir_url": "http://localhost:9009/otlp/v1/metrics",
   "log_level": "info",
   "ports": [
     {
@@ -59,6 +58,10 @@
     {
       "port": 3113,
       "name": "agentmemory"
+    },
+    {
+      "port": 8086,
+      "name": "InfluxDB"
     }
   ]
 }
