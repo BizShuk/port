@@ -32,10 +32,9 @@ type PortEntry struct {
 // Default初始化全域設定
 func Default() error {
 	config.Default(
-		config.WithAppName("port_listenor"), 
-		config.WithDefaultValue(defaultSettingsJSON)
+		config.WithAppName("port_listenor"),
+		config.WithDefaultValue(defaultSettingsJSON),
 	)
-
 
 	GlobalSettings = &Settings{}
 	if err := viper.Unmarshal(GlobalSettings); err != nil {
