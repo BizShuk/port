@@ -47,37 +47,35 @@ func checkPort(host string, port int, timeout time.Duration) (bool, float64, err
 	return true, elapsed, nil
 }
 
+// getProcessInfo 透過 lsof -F 結構化輸出取得 PID 與短 process name。
+//
+// 原本用 ps -p PID -o comm= 二次呼叫，在 macOS 上會回傳完整執行檔路徑
+// (e.g. /Applications/OrbStack.app/.../OrbStack Helper)，造成 PROCESS NAME
+// 欄位被應用程式路徑污染。改用 lsof -F pc 一次拿到 p<PID> 與 c<COMMAND>。
 func getProcessInfo(port int) (pid string, processName string) {
-	cmd := exec.Command("lsof", "-i", fmt.Sprintf(":%d", port))
+	cmd := exec.Command("lsof", "-nP", "-i", fmt.Sprintf(":%d", port), "-F", "pc")
 	output, err := cmd.Output()
 	if err != nil {
 		return "", ""
 	}
 
-	lines := strings.Split(strings.TrimSpace(string(output)), "\n")
-	if len(lines) < 2 {
-		return "", ""
-	}
-
-	for i := 1; i < len(lines); i++ {
-		fields := strings.Fields(lines[i])
-		if len(fields) < 2 {
+	for line := range strings.SplitSeq(string(output), "\n") {
+		if len(line) < 2 {
 			continue
 		}
-		pidStr := fields[1]
-		if pidStr == "" || pidStr == "PID" {
-			continue
+		switch line[0] {
+		case 'p':
+			pid = line[1:]
+		case 'c':
+			if processName == "" {
+				processName = line[1:]
+			}
 		}
-
-		cmd = exec.Command("ps", "-p", pidStr, "-o", "comm=")
-		out, err := cmd.Output()
-		if err != nil {
-			return pidStr, ""
+		if pid != "" && processName != "" {
+			return pid, processName
 		}
-		procName := strings.TrimSpace(string(out))
-		return pidStr, procName
 	}
-	return "", ""
+	return pid, processName
 }
 
 // CheckPorts 併發檢查多個連接埠，並依連接埠號碼排序回傳結果
