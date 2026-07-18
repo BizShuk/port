@@ -32,7 +32,7 @@ type PortEntry struct {
 // Default初始化全域設定
 func Default() error {
 	config.Default(
-		config.WithAppName("port_listenor"),
+		config.WithAppName("port"),
 		config.WithDefaultValue(defaultSettingsJSON),
 	)
 
