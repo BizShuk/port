@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/bizshuk/port_listenor/config"
+	"github.com/bizshuk/port/config"
 )
 
 // monitorInterval 套件級變數，記錄監控間隔時間（預設為 0）

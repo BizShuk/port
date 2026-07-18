@@ -9,7 +9,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/bizshuk/port_listenor/config"
+	"github.com/bizshuk/port/config"
 )
 
 func CheckPortWithProcess(entry config.PortEntry, timeout time.Duration) config.PortStatus {

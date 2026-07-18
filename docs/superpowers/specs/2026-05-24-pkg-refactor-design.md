@@ -2,14 +2,14 @@
 
 ## 目的與背景 (Objective and Background)
 
-為了解耦命令列介面 (CLI) 的定義與核心業務邏輯，本專案將進行套件結構重構。我們將建立 `cmd` 套件以存放 Cobra 指令定義，建立 `svc` 套件以存放實際的連接埠檢查、指標更新與儀表板監控的核心業務邏輯，並將模組名稱變更為 `github.com/bizshuk/port_listenor`。
+為了解耦命令列介面 (CLI) 的定義與核心業務邏輯，本專案將進行套件結構重構。我們將建立 `cmd` 套件以存放 Cobra 指令定義，建立 `svc` 套件以存放實際的連接埠檢查、指標更新與儀表板監控的核心業務邏輯，並將模組名稱變更為 `github.com/bizshuk/port`。
 
 ## 系統架構與套件規劃 (System Architecture and Package Layout)
 
 重構後的檔案組織如下：
 
 - `main.go`：主進入點，只導入 `cmd` 並啟動命令執行。
-- `go.mod`：模組宣告變更為 `github.com/bizshuk/port_listenor`。
+- `go.mod`：模組宣告變更為 `github.com/bizshuk/port`。
 - `cmd/`：命令解析層，存放與 CLI 指令相關之定義。
     - `root.go`：全域根命令與配置初始化。
     - `port.go`：父命令 `port` 定義。

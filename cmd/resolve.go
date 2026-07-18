@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/bizshuk/port_listenor/config"
+	"github.com/bizshuk/port/config"
 )
 
 // ResolvePorts 解析傳入的 port 列表，若為空則從設定檔讀取，並回傳 PortEntry 列表、Timeout 期間與錯誤。

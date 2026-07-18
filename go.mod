@@ -1,4 +1,4 @@
-module github.com/bizshuk/port_listenor
+module github.com/bizshuk/port
 
 go 1.26.0
 

@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/bizshuk/port_listenor/svc"
+	"github.com/bizshuk/port/svc"
 	"github.com/spf13/cobra"
 )
 

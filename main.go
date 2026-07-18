@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/bizshuk/port_listenor/cmd"
-	"github.com/bizshuk/port_listenor/config"
+	"github.com/bizshuk/port/cmd"
+	"github.com/bizshuk/port/config"
 )
 
 func main() {
