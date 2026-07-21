@@ -5,6 +5,7 @@ import (
 	"net"
 	"os/exec"
 	"sort"
+	"strconv"
 	"strings"
 	"sync"
 	"time"
@@ -36,7 +37,7 @@ func CheckPortWithProcess(entry config.PortEntry, timeout time.Duration) config.
 
 func checkPort(host string, port int, timeout time.Duration) (bool, float64, error) {
 	start := time.Now()
-	addr := fmt.Sprintf("%s:%d", host, port)
+	addr := net.JoinHostPort(host, strconv.Itoa(port))
 	conn, err := net.DialTimeout("tcp", addr, timeout)
 	if err != nil {
 		elapsed := time.Since(start).Seconds() * 1000

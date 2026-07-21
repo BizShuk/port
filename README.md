@@ -10,14 +10,14 @@
 
 `領域流程 (Domain Flow):`
 
-1. 進入點觸發：使用者透過 `check` 指令手動觸發，或由監控循環定期觸發。
+1. 進入點觸發：使用者直接執行 `port` (裸指令) 手動觸發，或由監控循環定期觸發。
 2. 連線測試：使用 `net.DialTimeout` 對目標連接埠進行 TCP 握手，計算連線延遲 (Latency)。
 3. 進程檢索：若連接埠為開啟狀態，則執行系統命令 `lsof` 取得該連接埠的進程識別碼 (PID)，再透過 `ps` 取得對應的進程名稱。
 4. 結果彙整：包裝為 `PortStatus` 實體並返回。
 
 `核心實體 (Key Entities):` `PortEntry`, `PortStatus`, `Checker`
 
-`相關處理器 (Related Handlers):` `checkCmd`
+`相關處理器 (Related Handlers):` `RootCmd.RunE`
 
 ---
 
@@ -34,7 +34,7 @@
 
 `核心實體 (Key Entities):` `Config`, `Checker`
 
-`相關處理器 (Related Handlers):` `monitorPortCmd`
+`相關處理器 (Related Handlers):` `MonitorCmd`
 
 ---
 
@@ -48,18 +48,31 @@
 
 ```bash
 # 檢查特定連接埠
-go run . port check --ports 80,443,3000 --timeout 2s
+go run . --ports 80,443,3000
 ```
 
 ### 指標與監控 (Metrics and Monitoring)
 
 ```bash
 # 啟動持續監控儀表板與指標伺服器
-go run . monitor port --interval 10s --metrics-port 10235
+go run . monitor --interval 10s --metrics-port 10235
+```
+
+### 設定管理 (Configuration Management)
+
+```bash
+# 檢視合併後的設定
+go run . config
+
+# 顯示每個設定值的來源
+go run . config --source
+
+# 更新使用者層級的 settings.local.json
+go run . config --update timeout=2s
 ```
 
 ## 改善建議 (Improvement Suggestions)
 
-- [ ] `解耦指令與核心邏輯 (Decouple commands and core logic)`：目前命令列的執行邏輯直接編寫於 `checkCmd` 與 `monitorPortCmd` 的 `RunE` 函式中，建議將具體業務邏輯抽離至服務層 `svc` 套件。
+- [ ] `解耦指令與核心邏輯 (Decouple commands and core logic)`：目前命令列的執行邏輯直接編寫於 `RootCmd.RunE` 與 `MonitorCmd.RunE` 函式中，建議將具體業務邏輯抽離至服務層 `svc` 套件。
 - [ ] `使用統一的日誌記錄器 (Use a unified logger)`：專案目前混用標準輸出與標準日誌套件，應設計統一的 Logger 介面以利維護。
-- [ ] `增加單元測試 (Add unit tests)`：目前專案缺乏自動化測試，應為 `checker` 的核心邏輯與配置載入編寫單元測試。
+- [ ] `增加核心單元測試 (Add core unit tests)`：目前測試涵蓋設定與指令註冊，但仍應為 `checker` 核心邏輯補齊單元測試。

@@ -17,10 +17,12 @@ var (
 	mimirEndpoint   string
 )
 
-var monitorCmd = &cobra.Command{
-	Use:   "monitor",
-	Short: "Start continuous port health monitoring",
-	Long:  `Run in daemon mode to check port status periodically and expose metrics.`,
+// MonitorCmd starts continuous port health monitoring.
+var MonitorCmd = &cobra.Command{
+	Use:     "monitor",
+	Aliases: []string{"m"},
+	Short:   "Start continuous port health monitoring",
+	Long:    `Run in daemon mode to check port status periodically and expose metrics.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 		defer cancel()
@@ -35,9 +37,8 @@ var monitorCmd = &cobra.Command{
 }
 
 func init() {
-	monitorCmd.Flags().StringVar(&monitorInterval, "interval", "", "check interval (e.g. 10s, 1m)")
-	monitorCmd.Flags().StringVar(&monitorTimeout, "timeout", "", "connection timeout (e.g. 2s, 5s)")
-	monitorCmd.Flags().IntVar(&metricsPort, "metrics-port", 0, "prometheus metrics port")
-	monitorCmd.Flags().StringVar(&mimirEndpoint, "mimir-endpoint", "", "OTLP mimir endpoint URL")
-	RootCmd.AddCommand(monitorCmd)
+	MonitorCmd.Flags().StringVar(&monitorInterval, "interval", "", "check interval (e.g. 10s, 1m)")
+	MonitorCmd.Flags().StringVar(&monitorTimeout, "timeout", "", "connection timeout (e.g. 2s, 5s)")
+	MonitorCmd.Flags().IntVar(&metricsPort, "metrics-port", 0, "prometheus metrics port")
+	MonitorCmd.Flags().StringVar(&mimirEndpoint, "mimir-endpoint", "", "OTLP mimir endpoint URL")
 }

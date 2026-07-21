@@ -20,6 +20,7 @@
 
 - Language: `Go 1.26.0`
 - CLI Framework: `github.com/spf13/cobra`
+- SDK: `github.com/bizshuk/gosdk v1.2.7`
 - Metrics: `github.com/prometheus/client_golang`
 - Telemetry: `go.opentelemetry.io/otel`
 
@@ -32,8 +33,9 @@
 
 | 業務領域 (Domain)                   | 套件/模組 (Package/Module) | 進入點 (Entry Point)      |
 | ----------------------------------- | -------------------------- | ------------------------- |
-| 埠口狀態檢查 (Port Status Check)    | `svc`                      | `CheckPortWithProcess()`  |
-| 指標與監控 (Metrics and Monitoring) | `svc`, `cmd`               | `monitorPortCmd` 執行邏輯 |
+| 埠口狀態檢查 (Port Status Check)    | `svc`, `cmd`               | `RootCmd.RunE` (裸指令)、`CheckPortWithProcess()` |
+| 指標與監控 (Metrics and Monitoring) | `svc`, `cmd`               | `MonitorCmd` 執行邏輯 |
+| 設定管理 (Configuration Management) | `config`, `cmd`             | `gosdk/cmd.ConfigCmd` |
 
 ## 開發指南 (Development Guide)
 
@@ -57,19 +59,26 @@ go build -o port_listenor .
 ### 執行 (Run)
 
 ```bash
-# 執行單次檢查
-go run . check
+# 執行單次檢查（裸指令即為 check）
+go run .
 
 # 執行持續監控
 go run . monitor
+
+# 檢視合併後的設定
+go run . config
 ```
 
 ### 測試 (Test)
 
-目前專案尚未編寫單元測試。
+```bash
+go test ./...
+```
+
+目前測試涵蓋設定預設值、module path 與 CLI command 註冊；`svc` 核心邏輯仍待補齊單元測試。
 
 ## 慣例 (Conventions)
 
-- Naming：變數與函式命名遵循 Go 官方風格指南，CLI 指令變數以 `Cmd` 結尾。
+- Naming：變數與函式命名遵循 Go 官方風格指南，CLI 指令使用 package-level exported var，並以 `Cmd` 結尾；旗標於 `init()` 綁定。
 - Error handling：錯誤訊息應包含上下文資訊，使用 `fmt.Errorf` 進行包裝並回傳至指令層統一輸出。
 - Telemetry：指標暴露使用 Prometheus Registry 進行註冊，遠端 OpenTelemetry 連接則使用 HTTP 導出器。
