@@ -1,7 +1,7 @@
 module.exports = {
     apps: [
         {
-            script: "port_listenor",
+            script: "port",
             args: "monitor"
         }
     ]

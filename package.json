@@ -1,0 +1,16 @@
+{
+  "name": "port",
+  "version": "0.0.0",
+  "private": true,
+  "description": "連接埠監控 CLI (port listenor)：TCP 探測、lsof/ps 進程資訊擷取與監控指標匯出",
+  "scripts": {
+    "dev": "go run .",
+    "test": "go test ./...",
+    "build": "go build -o bin/port .",
+    "deploy": "go install .",
+    "lint": "gofmt -l . && go vet ./...",
+    "clean": "rm -rf bin",
+    "destroy": "pm2 delete port || true",
+    "run:setup": "./scripts/run.sh"
+  }
+}

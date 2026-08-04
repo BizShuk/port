@@ -12,7 +12,7 @@
 ├── docs/               # Documentation
 ├── plans/              # Implementation plans
 ├── go.mod
-├── run.sh              # Setup and execution helper script
+├── scripts/run.sh      # Setup and execution helper script
 └── main.go             # Program entry point
 ```
 
