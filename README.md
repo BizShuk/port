@@ -21,6 +21,20 @@
 
 ---
 
+### 監聽程序終止 (Listener Process Termination)
+
+負責尋找監聽指定 TCP port 的程序，並以 `SIGTERM` 終止該程序。
+
+`領域流程 (Domain Flow):`
+
+1. 使用者執行 `port kill <port>`，指定一個 `1-65535` 範圍內的 port。
+2. 系統以 `lsof` 尋找該 port 上處於 `LISTEN` 狀態的 PID。
+3. 系統對該 PID 發送 `SIGTERM`，並輸出已終止的 PID 與 port。
+
+`相關處理器 (Related Handlers):` `KillCmd`
+
+---
+
 ### 指標與監控 (Metrics and Monitoring)
 
 負責提供持續的連接埠健康狀態監控，將檢查結果轉換為監控指標，並透過 Prometheus HTTP 伺服器或 OpenTelemetry 協定發送至遠端監控平台。
@@ -49,6 +63,13 @@
 ```bash
 # 檢查特定連接埠
 go run . --ports 80,443,3000
+```
+
+### 監聽程序終止 (Listener Process Termination)
+
+```bash
+# 終止監聽 8080 port 的程序
+port kill 8080
 ```
 
 ### 指標與監控 (Metrics and Monitoring)

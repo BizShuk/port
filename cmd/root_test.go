@@ -13,6 +13,7 @@ func TestRootCmdRegistersCommands(t *testing.T) {
 		want *cobra.Command
 	}{
 		{name: "config", want: gosdkcmd.ConfigCmd},
+		{name: "kill", want: KillCmd},
 		{name: "monitor", want: MonitorCmd},
 	}
 

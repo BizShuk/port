@@ -34,6 +34,7 @@
 | 業務領域 (Domain)                   | 套件/模組 (Package/Module) | 進入點 (Entry Point)      |
 | ----------------------------------- | -------------------------- | ------------------------- |
 | 埠口狀態檢查 (Port Status Check)    | `svc`, `cmd`               | `RootCmd.RunE` (裸指令)、`CheckPortWithProcess()` |
+| 監聽程序終止 (Listener Process Termination) | `svc`, `cmd` | `KillCmd`、`KillPortProcess()` |
 | 指標與監控 (Metrics and Monitoring) | `svc`, `cmd`               | `MonitorCmd` 執行邏輯 |
 | 設定管理 (Configuration Management) | `config`, `cmd`             | `gosdk/cmd.ConfigCmd` |
 
@@ -61,6 +62,9 @@ go build -o port_listenor .
 ```bash
 # 執行單次檢查（裸指令即為 check）
 go run .
+
+# 終止監聽指定 port 的程序
+go run . kill 8080
 
 # 執行持續監控
 go run . monitor
