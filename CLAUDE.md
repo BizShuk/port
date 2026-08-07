@@ -27,6 +27,7 @@
 ## 關鍵決策 (Key Decisions)
 
 - `併發檢查`：在執行連接埠檢查時，為每個連接埠啟動一個獨立的 goroutine 進行併發檢測，並使用 `sync.WaitGroup` 與互斥鎖 `sync.Mutex` 進行同步與結果收集，以加速多連接埠偵測。
+- `health 為明確 opt-in`：`port health` 只檢查設定中宣告了 `health` 欄位的 entry。對整份 port 清單無差別檢查會讓 `ssh`、`ollama` 之類非常駐項目永遠是紅的，指令便失去當作關卡的意義。沒有 HTTP 健康端點的服務以 `"health": "tcp"` 退回 TCP 連線判定，而不是被排除在外。
 - `系統命令集成`：當連接埠開啟時，透過執行系統內建的 `lsof` 與 `ps` 命令取得監聽該連接埠的 PID 與進程名稱，提供更豐富的診斷資訊。
 
 ## 模組對應 (Module Mapping)
@@ -35,6 +36,7 @@
 | ----------------------------------- | -------------------------- | ------------------------- |
 | 埠口狀態檢查 (Port Status Check)    | `svc`, `cmd`               | `RootCmd.RunE` (裸指令)、`CheckPortWithProcess()` |
 | 監聽程序終止 (Listener Process Termination) | `svc`, `cmd` | `KillCmd`、`KillPortProcess()` |
+| 服務健康檢查 (Service Health Check) | `svc`, `cmd`               | `HealthCmd`、`CheckHealth()` |
 | 指標與監控 (Metrics and Monitoring) | `svc`, `cmd`               | `MonitorCmd` 執行邏輯 |
 | 設定管理 (Configuration Management) | `config`, `cmd`             | `gosdk/cmd.ConfigCmd` |
 

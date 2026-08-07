@@ -27,6 +27,11 @@ type Settings struct {
 type PortEntry struct {
 	Port int    `mapstructure:"port" json:"port"`
 	Name string `mapstructure:"name" json:"name"`
+	// Health 是 `port health` 的探測目標：HTTP(S) URL，或字面值 "tcp"
+	// 表示以 TCP 連線成功作為健康判準。留空則不納入 health 檢查。
+	Health string `mapstructure:"health" json:"health,omitempty"`
+	// Insecure 跳過 TLS 憑證驗證，供使用自簽憑證的本機服務 opt-in。
+	Insecure bool `mapstructure:"insecure" json:"insecure,omitempty"`
 }
 
 // Default初始化全域設定

@@ -20,8 +20,14 @@
       "name": "vite-preview"
     },
     {
+      "port": 3306,
+      "name": "mysql",
+      "health": "tcp"
+    },
+    {
       "port": 5432,
-      "name": "postgres"
+      "name": "postgres",
+      "health": "tcp"
     },
     {
       "port": 6379,
@@ -33,27 +39,44 @@
     },
     {
       "port": 9090,
-      "name": "prometheus"
+      "name": "prometheus",
+      "health": "http://localhost:9090/-/healthy"
     },
     {
       "port": 9093,
-      "name": "alertmanager"
+      "name": "alertmanager",
+      "health": "http://localhost:9093/-/ready"
     },
     {
       "port": 3000,
-      "name": "grafana"
+      "name": "grafana",
+      "health": "https://localhost:3000/api/health",
+      "insecure": true
     },
     {
       "port": 3100,
-      "name": "loki"
+      "name": "loki",
+      "health": "http://localhost:3100/ready"
     },
     {
       "port": 9009,
-      "name": "mimir"
+      "name": "mimir",
+      "health": "http://localhost:9009/ready"
+    },
+    {
+      "port": 8428,
+      "name": "victoriametrics",
+      "health": "http://localhost:8428/health"
     },
     {
       "port": 3200,
-      "name": "tempo"
+      "name": "tempo",
+      "health": "http://localhost:3200/ready"
+    },
+    {
+      "port": 8000,
+      "name": "funasr",
+      "health": "http://localhost:8000/health"
     },
     {
       "port": 22,
@@ -69,7 +92,8 @@
     },
     {
       "port": 8086,
-      "name": "InfluxDB"
+      "name": "InfluxDB",
+      "health": "http://localhost:8086/health"
     }
   ]
 }

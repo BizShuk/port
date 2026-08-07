@@ -35,6 +35,25 @@
 
 ---
 
+### 服務健康檢查 (Service Health Check)
+
+負責對設定中`明確宣告 health 的 entry` 做一次通過/不通過的健康判定，供啟動後驗證或 CI 關卡使用。與`埠口狀態檢查`的差別在於它回答的是「服務健康嗎」而非「這個 port 有東西在聽嗎」，並以行程結束碼表態。
+
+`領域流程 (Domain Flow):`
+
+1. 使用者執行 `port health`，系統讀取設定並`只取出`宣告了 `health` 欄位的 entry。
+2. `health` 為 HTTP(S) URL 時發送 GET，狀態碼落在 2xx 視為健康；為字面值 `"tcp"` 時退回 TCP 連線測試，供沒有 HTTP 健康端點的服務（資料庫等）使用。
+3. 憑證：宣告 `insecure: true` 的 entry 跳過 TLS 驗證，供使用自簽憑證的本機服務 opt-in。
+4. 逐行輸出 `OK` / `FAIL`、探測目標與耗時，最後印出健康比例；`任一項失敗即以非零碼結束`。
+
+未宣告 `health` 的 entry 一律略過——若對整份清單無差別檢查，`ssh`、`ollama` 之類非常駐項目會讓結果永遠是紅的，這個指令也就失去把關的意義。
+
+`核心實體 (Key Entities):` `PortEntry.Health`, `HealthResult`
+
+`相關處理器 (Related Handlers):` `HealthCmd`、`svc.CheckHealth()`
+
+---
+
 ### 指標與監控 (Metrics and Monitoring)
 
 負責提供持續的連接埠健康狀態監控，將檢查結果轉換為監控指標，並透過 Prometheus HTTP 伺服器或 OpenTelemetry 協定發送至遠端監控平台。
@@ -77,6 +96,24 @@ port kill 8080
 ```bash
 # 啟動持續監控儀表板與指標伺服器
 go run . monitor --interval 10s --metrics-port 10235
+```
+
+### 服務健康檢查 (Service Health Check)
+
+```bash
+# 檢查所有宣告了 health 的服務；任一失敗以非零碼結束
+port health
+```
+
+設定範例（`config/default_settings.json` 或 `~/.config/port/settings.json`）：
+
+```json
+{
+  "port": 3000,
+  "name": "grafana",
+  "health": "https://localhost:3000/api/health",
+  "insecure": true
+}
 ```
 
 ### 設定管理 (Configuration Management)
