@@ -79,6 +79,11 @@
       "health": "http://localhost:8000/health"
     },
     {
+      "port": 8000,
+      "name": "funaudio",
+      "health": "http://localhost:8000/health"
+    },
+    {
       "port": 22,
       "name": "ssh"
     },
