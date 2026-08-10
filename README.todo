@@ -1,0 +1,32 @@
+# TODO
+
+> 本清單由 2026-08-10 的 submodule 一致性稽核建立。條目均有可查證的依據，
+> 但`優先序尚未排定` — 請依實際需求增刪。
+
+## 測試 (Testing)
+
+12 個原始碼檔對應 6 個測試檔。已有測試：`cmd/root`、`cmd/kill`、
+`config`、`svc/killer`、`svc/health`、`module_path`。缺的是：
+
+- [ ] `svc/checker.go` — `零測試`，但它是整個工具的核心（TCP 握手、延遲量測、
+      `lsof` / `ps` 行程檢索）。至少補上「port 開啟」與「port 關閉」兩條路徑。
+- [ ] `svc/monitor.go` 與 `cmd/monitor.go` — `零測試`。監控循環的
+      goroutine 併發收集（`sync.WaitGroup` + `sync.Mutex`）沒有
+      `-race` 測試守著。
+- [ ] `cmd/health.go` — `零測試`。`svc/health.go` 有測試但 CLI 層的
+      「只取宣告了 health 的 entry」過濾邏輯沒有，而這正是設計上最容易
+      被誤改回「檢查全部」的地方。
+- [ ] `cmd/resolve.go` 與 `config/metric.go` — `零測試`。
+
+## 平台相依 (Platform Dependency)
+
+- [ ] `lsof` 的 `COMMAND` 欄位在 macOS 上會截斷至 8 字元，取完整行程名需改用
+      `lsof -nP -i :PORT -F pc` 的結構化輸出。確認 `svc/checker.go` 走的是
+      哪一條，若仍是截斷版本則修正並把結論記入 `docs/memory/`。
+- [ ] `lsof` / `ps` 不存在或權限不足時的降級行為未定義。應明確：
+      是回報 port 狀態但省略行程資訊，還是整筆失敗。
+
+## 觀測 (Observability)
+
+- [ ] Prometheus metrics 與 OpenTelemetry trace 兩套都已接上，但沒有文件說明
+      各自的用途邊界與抓取端點。補進 `README.md` 的觀測節。
