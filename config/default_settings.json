@@ -4,48 +4,8 @@
   "log_level": "info",
   "ports": [
     {
-      "port": 8080,
-      "name": "web"
-    },
-    {
-      "port": 8081,
-      "name": "api"
-    },
-    {
-      "port": 5173,
-      "name": "vite"
-    },
-    {
-      "port": 4173,
-      "name": "vite-preview"
-    },
-    {
-      "port": 3306,
-      "name": "mysql",
-      "health": "tcp"
-    },
-    {
-      "port": 5432,
-      "name": "postgres",
-      "health": "tcp"
-    },
-    {
-      "port": 6379,
-      "name": "redis"
-    },
-    {
-      "port": 6378,
-      "name": "redis-cluster"
-    },
-    {
-      "port": 9090,
-      "name": "prometheus",
-      "health": "http://localhost:9090/-/healthy"
-    },
-    {
-      "port": 9093,
-      "name": "alertmanager",
-      "health": "http://localhost:9093/-/ready"
+      "port": 22,
+      "name": "ssh"
     },
     {
       "port": 3000,
@@ -56,48 +16,56 @@
     {
       "port": 3100,
       "name": "loki",
-      "health": "http://localhost:3100/ready"
-    },
-    {
-      "port": 9009,
-      "name": "mimir",
-      "health": "http://localhost:9009/ready"
-    },
-    {
-      "port": 8428,
-      "name": "victoriametrics",
-      "health": "http://localhost:8428/health"
-    },
-    {
-      "port": 3200,
-      "name": "tempo",
-      "health": "http://localhost:3200/ready"
-    },
-    {
-      "port": 8000,
-      "name": "funasr",
-      "health": "http://localhost:8000/health"
-    },
-    {
-      "port": 8000,
-      "name": "funaudio",
-      "health": "http://localhost:8000/health"
-    },
-    {
-      "port": 22,
-      "name": "ssh"
-    },
-    {
-      "port": 11434,
-      "name": "ollama"
+      "health": "https://localhost:3100/ready",
+      "insecure": true
     },
     {
       "port": 3113,
       "name": "agentmemory"
     },
     {
+      "port": 3200,
+      "name": "tempo",
+      "health": "https://localhost:3200/ready",
+      "insecure": true
+    },
+    {
+      "port": 3306,
+      "name": "mysql",
+      "health": "tcp"
+    },
+    {
+      "port": 4173,
+      "name": "vite-preview"
+    },
+    {
+      "port": 5173,
+      "name": "vite"
+    },
+    {
+      "port": 5432,
+      "name": "postgres",
+      "health": "tcp"
+    },
+    {
+      "port": 6378,
+      "name": "redis-cluster"
+    },
+    {
+      "port": 6379,
+      "name": "redis"
+    },
+    {
+      "port": 8080,
+      "name": "web"
+    },
+    {
+      "port": 8081,
+      "name": "api"
+    },
+    {
       "port": 8086,
-      "name": "InfluxDB",
+      "name": "influxdb",
       "health": "http://localhost:8086/health"
     },
     {
@@ -110,6 +78,37 @@
       "health": "http://localhost:8310/healthz"
     },
     {
+      "port": 8312,
+      "name": "funaudio",
+      "health": "http://localhost:8312/health"
+    },
+    {
+      "port": 8313,
+      "name": "funasr",
+      "health": "http://localhost:8313/health"
+    },
+    {
+      "port": 8313,
+      "name": "mlx",
+      "health": "http://localhost:8313/health"
+    },
+    {
+      "port": 8314,
+      "name": "ct2",
+      "health": "http://localhost:8314/health"
+    },
+    {
+      "port": 8315,
+      "name": "cosyvoice",
+      "health": "tcp"
+    },
+    {
+      "port": 8428,
+      "name": "victoriametrics",
+      "health": "https://localhost:8428/health",
+      "insecure": true
+    },
+    {
       "port": 8500,
       "name": "feedback-admin",
       "health": "http://localhost:8500/admin/"
@@ -117,6 +116,25 @@
     {
       "port": 8501,
       "name": "vidnote-play-ui"
+    },
+    {
+      "port": 9009,
+      "name": "mimir",
+      "health": "http://localhost:9009/ready"
+    },
+    {
+      "port": 9090,
+      "name": "prometheus",
+      "health": "http://localhost:9090/-/healthy"
+    },
+    {
+      "port": 9093,
+      "name": "alertmanager",
+      "health": "http://localhost:9093/-/ready"
+    },
+    {
+      "port": 11434,
+      "name": "ollama"
     }
   ]
 }
