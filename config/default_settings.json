@@ -99,6 +99,24 @@
       "port": 8086,
       "name": "InfluxDB",
       "health": "http://localhost:8086/health"
+    },
+    {
+      "port": 8300,
+      "name": "vidnote-web"
+    },
+    {
+      "port": 8310,
+      "name": "feedback",
+      "health": "http://localhost:8310/healthz"
+    },
+    {
+      "port": 8500,
+      "name": "feedback-admin",
+      "health": "http://localhost:8500/admin/"
+    },
+    {
+      "port": 8501,
+      "name": "vidnote-play-ui"
     }
   ]
 }
