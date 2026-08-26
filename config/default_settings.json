@@ -88,11 +88,6 @@
       "health": "http://localhost:8313/health"
     },
     {
-      "port": 8313,
-      "name": "mlx",
-      "health": "http://localhost:8313/health"
-    },
-    {
       "port": 8314,
       "name": "ct2",
       "health": "http://localhost:8314/health"
@@ -106,6 +101,11 @@
       "port": 8316,
       "name": "identity",
       "health": "http://localhost:8316/healthz"
+    },
+    {
+      "port": 8319,
+      "name": "mlx",
+      "health": "http://localhost:8319/health"
     },
     {
       "port": 8428,
