@@ -103,6 +103,11 @@
       "health": "tcp"
     },
     {
+      "port": 8316,
+      "name": "identity",
+      "health": "http://localhost:8316/healthz"
+    },
+    {
       "port": 8428,
       "name": "victoriametrics",
       "health": "https://localhost:8428/health",
