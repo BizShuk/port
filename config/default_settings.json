@@ -8,6 +8,12 @@
       "name": "ssh"
     },
     {
+      "port": 443,
+      "name": "nginx",
+      "health": "https://localhost:443/health",
+      "insecure": true
+    },
+    {
       "port": 3000,
       "name": "grafana",
       "health": "https://localhost:3000/api/health",
@@ -106,6 +112,12 @@
       "port": 8319,
       "name": "mlx",
       "health": "http://localhost:8319/health"
+    },
+    {
+      "port": 8320,
+      "name": "fun",
+      "health": "https://localhost:8320/",
+      "insecure": true
     },
     {
       "port": 8428,
