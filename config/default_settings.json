@@ -109,6 +109,11 @@
       "health": "http://localhost:8316/healthz"
     },
     {
+      "port": 8317,
+      "name": "payment",
+      "health": "http://localhost:8317/healthz"
+    },
+    {
       "port": 8319,
       "name": "mlx",
       "health": "http://localhost:8319/health"
