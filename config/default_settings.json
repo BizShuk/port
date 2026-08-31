@@ -140,6 +140,11 @@
       "name": "vidnote-play-ui"
     },
     {
+      "port": 8502,
+      "name": "pm2-web",
+      "health": "http://localhost:8502/healthz"
+    },
+    {
       "port": 9009,
       "name": "mimir",
       "health": "http://localhost:9009/ready"
