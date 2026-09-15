@@ -161,7 +161,8 @@
     },
     {
       "port": 11434,
-      "name": "ollama"
+      "name": "ollama",
+      "health": "http://localhost:11434/api/version"
     }
   ]
 }
