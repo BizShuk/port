@@ -114,6 +114,11 @@
       "health": "http://localhost:8317/healthz"
     },
     {
+      "port": 8318,
+      "name": "trifecta",
+      "health": "http://localhost:8318/healthz"
+    },
+    {
       "port": 8319,
       "name": "mlx",
       "health": "http://localhost:8319/health"
@@ -123,6 +128,16 @@
       "name": "fun",
       "health": "https://localhost:8320/",
       "insecure": true
+    },
+    {
+      "port": 8321,
+      "name": "iphone-sync",
+      "health": "http://localhost:8321/"
+    },
+    {
+      "port": 8327,
+      "name": "outfit",
+      "health": "http://localhost:8327/"
     },
     {
       "port": 8428,
