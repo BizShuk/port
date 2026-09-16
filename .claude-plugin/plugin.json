@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "port",
+  "description": "Port toolkit for github.com/bizshuk/port — the `port` CLI (status check, kill, health gate, metrics) plus the `port-usage` skill: 83xx public / 85xx internal port allocation, exposure audit, and \"address already in use\" debugging. The port registry it reads is config/default_settings.json in this repo.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Shuk Liu",
+    "email": "shuk.liu@gmail.com",
+    "url": "https://github.com/bizshuk"
+  },
+  "homepage": "https://github.com/bizshuk/port",
+  "repository": "https://github.com/bizshuk/port",
+  "license": "MIT",
+  "keywords": [
+    "port",
+    "port-usage",
+    "health-check",
+    "exposure",
+    "docker-compose",
+    "cli"
+  ]
+}

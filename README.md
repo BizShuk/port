@@ -129,6 +129,13 @@ go run . config --source
 go run . config --update timeout=2s
 ```
 
+## Agent 技能 (Skills)
+
+`skills/port-usage/` 擁有本工作區的埠號規則: `83xx` public / `85xx` internal 分段、
+取號流程、compose `ports:` 曝光面稽核與 `address already in use` 排查。它讀的登記表
+就是本 repo 的 `config/default_settings.json` (與 host 的 `~/.config/port/settings.json`)，
+所以規則與事實住在同一個 repo。容器化與 `deployment.yml` 的契約在 `inf` 的 `inf-spec` skill。
+
 ## 改善建議 (Improvement Suggestions)
 
 - [ ] `解耦指令與核心邏輯 (Decouple commands and core logic)`：目前命令列的執行邏輯直接編寫於 `RootCmd.RunE` 與 `MonitorCmd.RunE` 函式中，建議將具體業務邏輯抽離至服務層 `svc` 套件。

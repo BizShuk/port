@@ -11,6 +11,8 @@
 ├── svc/                # Service layer (core checker and dashboard logic)
 ├── docs/               # Documentation
 ├── plans/              # Implementation plans
+├── skills/port-usage/  # Agent 技能：83xx/85xx 埠號分段、取號、曝光面稽核（自 inf 移入，與登記表同 repo）
+├── .claude-plugin/     # 本 repo 作為 Claude Code plugin 的身分（skills/ 由目錄慣例自動探索）
 ├── go.mod
 ├── scripts/run.sh      # Setup and execution helper script
 └── main.go             # Program entry point
