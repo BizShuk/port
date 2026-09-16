@@ -135,6 +135,11 @@
       "health": "http://localhost:8321/"
     },
     {
+      "port": 8322,
+      "name": "open-data",
+      "health": "http://localhost:8322/healthz/"
+    },
+    {
       "port": 8327,
       "name": "outfit",
       "health": "http://localhost:8327/"
