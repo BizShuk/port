@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# pre-push hook: require `go install .` to succeed before allowing push.
+# Exits non-zero to abort the push when the build fails.
+
+set -euo pipefail
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+cd "$REPO_ROOT"
+
+echo "[pre-push] running: go install ."
+go install .
+echo "[pre-push] install ok, proceeding with push"

@@ -57,8 +57,10 @@ go mod download
 
 ### 建置 (Build)
 
+預設執行 `go install .`, 產物名稱與 cobra `Use: "port"` 一致; `pre-push` hook 在 push 前會強制重跑這條指令, 失敗會 abort。
+
 ```bash
-go build -o port_listenor .
+go install .
 ```
 
 ### 執行 (Run)
