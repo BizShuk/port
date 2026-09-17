@@ -140,9 +140,19 @@
       "health": "http://localhost:8322/healthz/"
     },
     {
+      "port": 8323,
+      "name": "datahub",
+      "health": "http://localhost:8323/healthz"
+    },
+    {
       "port": 8327,
       "name": "outfit",
       "health": "http://localhost:8327/"
+    },
+    {
+      "port": 8370,
+      "name": "tools-web",
+      "health": "http://localhost:8370/"
     },
     {
       "port": 8428,
