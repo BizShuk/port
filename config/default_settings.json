@@ -79,6 +79,11 @@
       "name": "vidnote-web"
     },
     {
+      "port": 8301,
+      "name": "night-market",
+      "health": "http://localhost:8301/healthz"
+    },
+    {
       "port": 8310,
       "name": "feedback",
       "health": "http://localhost:8310/healthz"
