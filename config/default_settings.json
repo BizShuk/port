@@ -84,6 +84,11 @@
       "health": "http://localhost:8301/healthz"
     },
     {
+      "port": 8307,
+      "name": "stock",
+      "health": "http://localhost:8307/healthz"
+    },
+    {
       "port": 8310,
       "name": "feedback",
       "health": "http://localhost:8310/healthz"
