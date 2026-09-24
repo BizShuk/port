@@ -155,6 +155,11 @@
       "health": "http://localhost:8323/healthz"
     },
     {
+      "port": 8324,
+      "name": "ocr",
+      "health": "http://localhost:8324/health"
+    },
+    {
       "port": 8327,
       "name": "outfit",
       "health": "http://localhost:8327/"
