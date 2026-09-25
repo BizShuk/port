@@ -94,6 +94,11 @@
       "health": "http://localhost:8310/healthz"
     },
     {
+      "port": 8311,
+      "name": "webhook-server",
+      "health": "http://localhost:8311/healthz"
+    },
+    {
       "port": 8312,
       "name": "funaudio",
       "health": "http://localhost:8312/health"
