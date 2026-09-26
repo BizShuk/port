@@ -170,11 +170,6 @@
       "health": "http://localhost:8327/"
     },
     {
-      "port": 8370,
-      "name": "tools-web",
-      "health": "http://localhost:8370/"
-    },
-    {
       "port": 8428,
       "name": "victoriametrics",
       "health": "https://localhost:8428/health",
