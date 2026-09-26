@@ -165,6 +165,11 @@
       "health": "http://localhost:8324/health"
     },
     {
+      "port": 8325,
+      "name": "common-service",
+      "health": "http://localhost:8325/healthz"
+    },
+    {
       "port": 8327,
       "name": "outfit",
       "health": "http://localhost:8327/"
