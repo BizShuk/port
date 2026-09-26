@@ -129,11 +129,6 @@
       "health": "http://localhost:8317/healthz"
     },
     {
-      "port": 8318,
-      "name": "trifecta",
-      "health": "http://localhost:8318/healthz"
-    },
-    {
       "port": 8319,
       "name": "mlx",
       "health": "http://localhost:8319/health"
