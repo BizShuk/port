@@ -185,6 +185,11 @@
       "health": "http://localhost:8502/healthz"
     },
     {
+      "port": 8503,
+      "name": "laya",
+      "health": "http://localhost:8503/health"
+    },
+    {
       "port": 9009,
       "name": "mimir",
       "health": "http://localhost:9009/ready"
