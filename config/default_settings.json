@@ -190,6 +190,11 @@
       "health": "http://localhost:8503/health"
     },
     {
+      "port": 8504,
+      "name": "msghub",
+      "health": "http://localhost:8504/api/health"
+    },
+    {
       "port": 9009,
       "name": "mimir",
       "health": "http://localhost:9009/ready"
