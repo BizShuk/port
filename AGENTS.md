@@ -4,7 +4,7 @@
 
 ```tree
 .
-├── CLAUDE.md
+├── AGENTS.md
 ├── README.md
 ├── cmd/                # CLI commands (Cobra)
 ├── config/             # Configuration loader with viper
