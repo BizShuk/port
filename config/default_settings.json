@@ -160,6 +160,11 @@
       "health": "http://localhost:8325/healthz"
     },
     {
+      "port": 8326,
+      "name": "gogs",
+      "health": "http://localhost:8326/healthcheck"
+    },
+    {
       "port": 8327,
       "name": "outfit",
       "health": "http://localhost:8327/"
