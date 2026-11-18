@@ -98,7 +98,7 @@ grep -rhoE '"([0-9.]+:)?[0-9]{2,5}:[0-9]{2,5}"' \
 ss -tlnH | awk '{print $4}' | sed 's/.*://' | sort -nu      # linux
 lsof -nP -iTCP -sTCP:LISTEN | awk 'NR>1{print $9}' | sed 's/.*://' | sort -nu  # macos
 
-# c) 埠號登記表（含已下線但保留的號碼）：本 repo 的 config/default_settings.json 是 embed 預設值，
+# c) 埠號登記表（含已下線但保留的號碼）：本 repo 的 config/example/settings.example.json 是 embed 預設值，
 #    host 上若有 ~/.config/port/settings.json，它的 ports 陣列會整個蓋掉預設——兩份都要看
 jq -r '.ports[] | "\(.port)\t\(.name)"' "${PORT_REGISTRY:-$HOME/.config/port/settings.json}" | sort -n
 ```
@@ -142,7 +142,7 @@ environment:
 
 ```bash
 # 登記到 port 工具，有 HTTP 健康端點就寫 URL，資料庫類寫 "tcp"，自簽憑證加 "insecure": true
-#   repo 的 config/default_settings.json（embed 預設）與 host 的 ~/.config/port/settings.json 兩份都要改
+#   repo 的 config/example/settings.example.json（embed 預設）與 host 的 ~/.config/port/settings.json 兩份都要改
 #   { "port": 8310, "name": "<service>", "health": "http://localhost:8310/health" }
 
 docker compose up -d <service>
@@ -204,6 +204,6 @@ grep -oE 'localhost:[0-9]+' "$TUNNEL_CONFIG" | cut -d: -f2 | sort -u \
 | 分段規則的採用與例外 | 該 repo `CLAUDE.md` 的「關鍵決策」 |
 | 誰佔了哪個號碼 | 各 `docker-compose*.yml` 的 `ports:`——`唯一`事實來源 |
 | 觀測性元件的既定埠號 | `inf/CLAUDE.md` 的埠號表 |
-| 健康端點登記 | 本 repo `config/default_settings.json` + host `~/.config/port/settings.json` |
+| 健康端點登記 | 本 repo `config/example/settings.example.json` + host `~/.config/port/settings.json` |
 | Tunnel ingress 的機制 | `inf/docs/cloudflare-tunnel.md` |
 | 容器化與 deployment.yml 的契約 | `inf` 的 `inf-spec` skill |

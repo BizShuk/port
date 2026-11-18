@@ -4,12 +4,18 @@ import (
 	_ "embed"
 	"fmt"
 
+	gosdkcmdconfig "github.com/bizshuk/gosdk/cmd/config"
 	"github.com/bizshuk/gosdk/config"
 	"github.com/spf13/viper"
 )
 
-//go:embed default_settings.json
+//go:embed example/settings.example.json
 var defaultSettingsJSON string
+
+// init 登記內嵌範例, 供 `config default` 複製到設定目錄.
+func init() {
+	gosdkcmdconfig.MustRegisterDefault("settings.json", []byte(defaultSettingsJSON))
+}
 
 // GlobalSettings 全域設定實例
 var GlobalSettings *Settings

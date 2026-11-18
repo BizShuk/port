@@ -105,7 +105,7 @@ go run . monitor --interval 10s --metrics-port 10235
 port health
 ```
 
-設定範例（`config/default_settings.json` 或 `~/.config/port/settings.json`）：
+設定範例（`config/example/settings.example.json` 或 `~/.config/port/settings.json`）：
 
 ```json
 {
@@ -133,7 +133,7 @@ go run . config --update timeout=2s
 
 `skills/port-usage/` 擁有本工作區的埠號規則: `83xx` public / `85xx` internal 分段、
 取號流程、compose `ports:` 曝光面稽核與 `address already in use` 排查。它讀的登記表
-就是本 repo 的 `config/default_settings.json` (與 host 的 `~/.config/port/settings.json`)，
+就是本 repo 的 `config/example/settings.example.json` (與 host 的 `~/.config/port/settings.json`)，
 所以規則與事實住在同一個 repo。容器化與 `deployment.yml` 的契約在 `inf` 的 `inf-spec` skill。
 
 ## 改善建議 (Improvement Suggestions)
