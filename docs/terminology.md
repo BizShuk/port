@@ -41,7 +41,7 @@
 | --- | --- | --- | --- |
 | 監控指標 | Metrics | 匯出給 Prometheus 的檢查結果 | `prometheus/client_golang` |
 | 遙測 | Telemetry | OpenTelemetry 追蹤資料 | `go.opentelemetry.io/otel` |
-| 監控循環 | Monitoring Loop | 定期重複執行檢查的常駐模式，與手動單次觸發相對 | `ecosystem.config.js` |
+| 監控循環 | Monitoring Loop | 定期重複執行檢查的常駐模式，與手動單次觸發相對 | `port monitor` |
 
 ## 實作慣例 (Implementation Conventions)
 
