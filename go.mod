@@ -3,7 +3,7 @@ module github.com/bizshuk/port
 go 1.26.0
 
 require (
-	github.com/bizshuk/gosdk v1.3.27
+	github.com/bizshuk/gosdk v1.8.5
 	github.com/spf13/cobra v1.10.2
 	github.com/spf13/viper v1.21.0
 	go.opentelemetry.io/otel v1.44.0
@@ -19,6 +19,7 @@ require (
 	github.com/go-logr/logr v1.4.3 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/go-viper/mapstructure/v2 v2.5.0 // indirect
+	github.com/gocarina/gocsv v0.0.0-20260523204920-c264028e67ea // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/snappy v1.0.0 // indirect
 	github.com/google/uuid v1.6.0 // indirect
