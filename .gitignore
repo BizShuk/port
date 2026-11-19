@@ -12,3 +12,4 @@ port_listenor
 plans
 data
 bin/
+node_modules/
