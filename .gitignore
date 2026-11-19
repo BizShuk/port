@@ -13,3 +13,4 @@ plans
 data
 bin/
 node_modules/
+pnpm-lock.yaml
