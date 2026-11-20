@@ -170,6 +170,11 @@
       "health": "http://localhost:8327/"
     },
     {
+      "port": 8328,
+      "name": "stts",
+      "health": "http://localhost:8328/healthz"
+    },
+    {
       "port": 8428,
       "name": "victoriametrics",
       "health": "https://localhost:8428/health",
