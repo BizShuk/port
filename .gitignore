@@ -12,5 +12,4 @@ port_listenor
 plans
 data
 bin/
-node_modules/
-pnpm-lock.yaml
+**/node_modules/
